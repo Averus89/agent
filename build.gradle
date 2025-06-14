@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkiverse.jdbc:quarkus-jdbc-sqlite4j:0.0.7'
+    implementation 'io.quarkus:quarkus-rest-client-jackson'
+    implementation 'io.quarkiverse.langchain4j:quarkus-langchain4j-chatbot:1.0.0'
+    implementation 'io.quarkiverse.retrofit:quarkus-easy-retrofit:1.2.0'
+    implementation 'io.quarkiverse.langchain4j:quarkus-langchain4j-openai:1.0.0'
+    implementation 'io.quarkiverse.jdbc:quarkus-jdbc-sqlite:3.0.11'
+    implementation 'io.quarkiverse.langchain4j:quarkus-langchain4j-core:1.0.0'
+    implementation 'io.quarkiverse.playwright:quarkus-playwright:2.1.1'
+    implementation 'io.quarkus:quarkus-arc'
+    implementation 'io.quarkus:quarkus-rest'
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+}
+
+group 'pl.dexbytes'
+version '1.0.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+test {
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+}
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
